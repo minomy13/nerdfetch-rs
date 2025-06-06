@@ -1,0 +1,13 @@
+[package]
+name = "nerdfetch-rs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+toml = "0.8.22"
+serde = { version = "1.0.219", features = ["derive"] }
+color-print = "0.3.7"
+sysinfo = "0.35.2"
+chrono = "0.4.41"
+regex = "1.11.1"
+users = "0.11.0"
