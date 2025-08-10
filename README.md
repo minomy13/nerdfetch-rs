@@ -1,13 +1,21 @@
+<p align="center">
+  <img src="icon.svg" alt="nerdfetch-rs icon" width="160" style="display: block; margin-left: auto; margin-right: auto">
+  
+  <br/>
+  
+  <img src="https://img.shields.io/github/license/minomy13/nerdfetch-rs?style=for-the-badge" alt="license">
+  <img src="https://img.shields.io/github/v/tag/minomy13/nerdfetch-rs?style=for-the-badge&label=version" alt="version">
+  
+  <br/>
+</p>
+
 # nerdfetch-rs
 
-<img src="icon.svg" alt="nerdfetch-rs icon" width="160" style="display: block; margin-left: auto; margin-right: auto">
 <br/>
-<div style="display: block; margin-left: auto; margin-right: auto; width: fit-content">
-<img src="https://img.shields.io/github/license/minomy13/nerdfetch-rs?style=for-the-badge" alt="license">
-<img src="https://img.shields.io/github/v/tag/minomy13/nerdfetch-rs?style=for-the-badge&label=version" alt="version">
-</div>
 
 > A minimal, fast system fetch tool — rewritten in Rust for speed, clarity, and configurability.
+
+<br/>
 
 ![Alt](https://repobeats.axiom.co/api/embed/2e201bc93ef94da91317609669ec0b33a688d6a9.svg "Repobeats analytics image")
 
