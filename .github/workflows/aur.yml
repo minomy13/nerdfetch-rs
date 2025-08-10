@@ -1,0 +1,62 @@
+name: Submit to AUR
+
+on:
+  push:
+    tags:
+      - "v[0-9]*.[0-9]*.[0-9]*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get version
+        id: get_version
+        run: echo "tag_version=$(echo $GITHUB_REF | cut -d / -f 3 | sed 's/^v//')" >> $GITHUB_OUTPUT
+
+      - name: Create PKGBUILD
+        run: |
+          cat << EOF >> PKGBUILD
+          # Maintainer: minomy13 <mail@minomy13.com>
+
+          pkgname=nerdfetch-rs
+          pkgver=${{ steps.get_version.outputs.tag_version }}
+          pkgrel=1
+          pkgdesc="A minimal, fast system fetch tool - rewritten in Rust for speed, clarity, and configurability."
+          arch=('x86_64' 'aarch64')
+          url="https://github.com/minomy13/nerdfetch-rs"
+          license=('MIT')
+          makedepends=('cargo')
+          source=("\${pkgname}-\${pkgver}.tar.gz::\${url}/archive/refs/tags/v\${pkgver}.tar.gz")
+          md5sums=("SKIP")
+
+          prepare() {
+            export RUSTUP_TOOLCHAIN=stable
+            cd "\${srcdir}/\${pkgname}-\${pkgver}"
+            cargo update
+            cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
+          }
+
+          build() {
+            export RUSTUP_TOOLCHAIN=stable
+            export CARGO_TARGET_DIR=target
+            cd "\${srcdir}/\${pkgname}-\${pkgver}"
+            cargo build --frozen --release
+          }
+
+          package() {
+            cd "\${srcdir}/\${pkgname}-\${pkgver}"
+            install -Dm0755 -t "\${pkgdir}/usr/bin/" "target/release/\${pkgname}"
+            install -Dm644 LICENSE "\${pkgdir}/usr/share/licenses/\${pkgname}/LICENSE"
+          }
+          EOF
+
+      - name: Upload to AUR
+        uses: KSXGitHub/github-actions-deploy-aur@v4.1.1
+        with:
+          pkgname: nerdfetch-rs
+          pkgbuild: ./PKGBUILD
+          commit_username: ${{ secrets.AUR_USERNAME }}
+          commit_email: ${{ secrets.AUR_EMAIL }}
+          ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          commit_message: Update AUR package
+          ssh_keyscan_types: rsa,ecdsa,ed25519
