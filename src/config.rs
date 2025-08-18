@@ -25,9 +25,11 @@ macro_rules! conf_unwrap_or {
 pub(crate) use conf_unwrap_or;
 
 pub fn read() -> Config {
-    match fs::read_to_string(open_config_file().unwrap_or_else(|not_found_err| {
-        panic!("Error while reading config: {}", not_found_err.to_string())
-    })) {
+    match fs::read_to_string(
+        open_config_file().unwrap_or_else(|not_found_err| {
+            panic!("Error while reading config: {}", not_found_err)
+        }),
+    ) {
         Ok(file) => match toml::from_str::<Config>(&file) {
             Ok(result) => result,
             Err(error) => panic!(
@@ -38,9 +40,9 @@ pub fn read() -> Config {
 
         Err(error) => match error.kind() {
             ErrorKind::NotFound => create_config_file().unwrap_or_else(|not_found_err| {
-                panic!("Error while reading config: {}", not_found_err.to_string())
+                panic!("Error while reading config: {}", not_found_err)
             }),
-            _ => panic!("Error while reading config: {}", error.to_string()),
+            _ => panic!("Error while reading config: {}", error),
         },
     }
 }
