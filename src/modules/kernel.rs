@@ -20,4 +20,8 @@ impl Module for Kernel {
             System::kernel_version().unwrap()
         }
     }
+
+    fn is_active(&self, config: &Config) -> bool {
+        conf_unwrap_or!(config, true, modules / kernel / active)
+    }
 }

@@ -1,3 +1,4 @@
+use crate::config::conf_unwrap_or;
 use crate::config::schema::Config;
 use crate::modules::module::Module;
 use users::os::unix::UserExt;
@@ -16,5 +17,9 @@ impl Module for Shell {
             Some(user) => user.shell().to_string_lossy().to_string(),
             None => "n/a".to_string(),
         }
+    }
+
+    fn is_active(&self, config: &Config) -> bool {
+        conf_unwrap_or!(config, true, modules / shell / active)
     }
 }

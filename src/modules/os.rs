@@ -1,3 +1,4 @@
+use crate::config::conf_unwrap_or;
 use crate::config::schema::Config;
 use crate::modules::module::Module;
 #[cfg(target_os = "linux")]
@@ -76,5 +77,9 @@ impl Module for Os {
                 None => "n/a".to_string(),
             }
         }
+    }
+
+    fn is_active(&self, config: &Config) -> bool {
+        conf_unwrap_or!(config, true, modules / os / active)
     }
 }

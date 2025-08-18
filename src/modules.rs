@@ -7,7 +7,6 @@ use crate::modules::os::Os;
 use crate::modules::shell::Shell;
 use crate::modules::uptime::Uptime;
 use crate::modules::user::User;
-use std::string::String;
 
 mod color_palette;
 mod kernel;
@@ -18,21 +17,18 @@ mod shell;
 mod uptime;
 mod user;
 
-macro_rules! formatted_modules_vec {
-    ($conf:ident, $($module:ident), *) => {
-        vec![$($module::default().get_formatted(&$conf),)+]
+macro_rules! boxed_vec {
+    ($($module:ident), *) => {
+        vec![$(Box::new($module),)+]
     };
 }
 
 pub fn get_modules(config: &Config) -> Vec<String> {
-    return formatted_modules_vec!(
-        config,
-        User,
-        Os,
-        Kernel,
-        Memory,
-        Shell,
-        Uptime,
-        ColorPalette
-    )
+    let modules: Vec<Box<dyn Module>> =
+        boxed_vec![User, Os, Kernel, Memory, Shell, Uptime, ColorPalette];
+    modules
+        .iter()
+        .filter(|module| module.is_active(config))
+        .map(|module| module.get_formatted(config))
+        .collect()
 }

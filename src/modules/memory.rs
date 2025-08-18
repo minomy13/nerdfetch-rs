@@ -1,8 +1,9 @@
+use crate::config::conf_unwrap_or;
 use crate::config::schema::Config;
 use crate::modules::module::Module;
 use sysinfo::System;
 
-#[derive(Default)]
+//#[derive(Default)]
 pub struct Memory;
 
 impl Module for Memory {
@@ -20,5 +21,9 @@ impl Module for Memory {
             total / 1_000_000.0,
             used / total * 100.0
         )
+    }
+
+    fn is_active(&self, config: &Config) -> bool {
+        conf_unwrap_or!(config, true, modules / memory / active)
     }
 }

@@ -1,4 +1,4 @@
-use crate::config::schema::Config;
+use crate::config::{conf_unwrap_or, schema::Config};
 use crate::modules::module::Module;
 use color_print::cformat;
 use sysinfo::System;
@@ -25,5 +25,9 @@ impl Module for User {
 
     fn get_info(&self, _: &Config) -> String {
         unimplemented!()
+    }
+
+    fn is_active(&self, config: &Config) -> bool {
+        conf_unwrap_or!(config, true, modules / user / active)
     }
 }
