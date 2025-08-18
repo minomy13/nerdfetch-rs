@@ -9,6 +9,7 @@ pub struct Config {
 #[derive(Default, Serialize, Deserialize, Debug)]
 pub struct Modules {
     pub color_palette: Option<ColorPaletteConfig>,
+    pub host: Option<HostConfig>,
     pub kernel: Option<KernelConfig>,
     pub memory: Option<MemoryConfig>,
     pub os: Option<OsConfig>,
@@ -19,6 +20,11 @@ pub struct Modules {
 
 #[derive(Default, Serialize, Deserialize, Debug)]
 pub struct ColorPaletteConfig {
+    pub active: Option<bool>,
+}
+
+#[derive(Default, Serialize, Deserialize, Debug)]
+pub struct HostConfig {
     pub active: Option<bool>,
 }
 

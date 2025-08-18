@@ -1,5 +1,6 @@
 use crate::config::schema::Config;
 use crate::modules::color_palette::ColorPalette;
+use crate::modules::host::Host;
 use crate::modules::kernel::Kernel;
 use crate::modules::memory::Memory;
 use crate::modules::module::Module;
@@ -9,6 +10,7 @@ use crate::modules::uptime::Uptime;
 use crate::modules::user::User;
 
 mod color_palette;
+mod host;
 mod kernel;
 mod memory;
 mod module;
@@ -25,7 +27,7 @@ macro_rules! boxed_vec {
 
 pub fn get_modules(config: &Config) -> Vec<String> {
     let modules: Vec<Box<dyn Module>> =
-        boxed_vec![User, Os, Kernel, Memory, Shell, Uptime, ColorPalette];
+        boxed_vec![User, Os, Kernel, Memory, Shell, Host, Uptime, ColorPalette];
     modules
         .iter()
         .filter(|module| module.is_active(config))
