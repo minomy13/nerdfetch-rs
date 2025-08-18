@@ -5,7 +5,6 @@ use crate::modules::module::Module;
 use regex::Regex;
 use sysinfo::System;
 
-#[derive(Default)]
 pub struct Os;
 
 impl Module for Os {

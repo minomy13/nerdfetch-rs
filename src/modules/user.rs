@@ -4,7 +4,6 @@ use color_print::cformat;
 use sysinfo::System;
 use users::{get_current_uid, get_user_by_uid};
 
-#[derive(Default)]
 pub struct User;
 
 impl Module for User {

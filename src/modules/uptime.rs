@@ -4,7 +4,6 @@ use crate::modules::module::Module;
 use chrono::Duration;
 use sysinfo::System;
 
-#[derive(Default)]
 pub struct Uptime;
 
 impl Module for Uptime {

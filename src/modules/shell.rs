@@ -4,7 +4,6 @@ use crate::modules::module::Module;
 use users::os::unix::UserExt;
 use users::{get_current_uid, get_user_by_uid};
 
-#[derive(Default)]
 pub struct Shell;
 
 impl Module for Shell {

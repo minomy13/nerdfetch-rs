@@ -3,7 +3,6 @@ use crate::config::schema::Config;
 use crate::modules::module::Module;
 use sysinfo::System;
 
-#[derive(Default)]
 pub struct Kernel;
 
 impl Module for Kernel {
