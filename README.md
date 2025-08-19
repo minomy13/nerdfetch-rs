@@ -33,7 +33,7 @@ You can find the config file at `$HOME/.config/nerdfetch-rs.toml`. As the suffix
 ### Modules
 
 Every module has its own table named like `[modules.module_name]`. Every module can be enabled or disabled
-with the enabled key, which is a boolean. Some default modules are enabled by
+with the `active` key, which is a boolean. Some default modules are enabled by
 default and must be disabled explicitely.
 
 - **Default:** `color_palette` `kernel` `memory` `os` `shell` `uptime` `user`
