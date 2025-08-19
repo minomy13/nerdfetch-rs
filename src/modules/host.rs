@@ -19,13 +19,10 @@ impl Module for Host {
     fn get_info(&self, _: &Config) -> String {
         #[cfg(target_os = "linux")]
         {
-            let product =
-                fs::read_to_string("/sys/class/dmi/id/product_name").unwrap_or("n/a".to_string());
-
-            let vendor =
-                fs::read_to_string("/sys/class/dmi/id/sys_vendor").unwrap_or("n/a".to_string());
-
-            format!("{} {}", vendor.trim(), product.trim())
+            fs::read_to_string("/sys/class/dmi/id/product_version")
+                .unwrap_or("n/a".to_string())
+                .trim()
+                .to_string()
         }
 
         #[cfg(target_os = "macos")]
