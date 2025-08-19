@@ -8,12 +8,55 @@ pub struct Config {
 
 #[derive(Default, Serialize, Deserialize, Debug)]
 pub struct Modules {
+    pub color_palette: Option<ColorPaletteConfig>,
+    pub host: Option<HostConfig>,
     pub kernel: Option<KernelConfig>,
+    pub memory: Option<MemoryConfig>,
+    pub os: Option<OsConfig>,
+    pub shell: Option<ShellConfig>,
+    pub uptime: Option<UptimeConfig>,
+    pub user: Option<UserConfig>,
+}
+
+#[derive(Default, Serialize, Deserialize, Debug)]
+pub struct ColorPaletteConfig {
+    pub active: Option<bool>,
+}
+
+#[derive(Default, Serialize, Deserialize, Debug)]
+pub struct HostConfig {
+    pub active: Option<bool>,
 }
 
 #[derive(Default, Serialize, Deserialize, Debug)]
 pub struct KernelConfig {
+    pub active: Option<bool>,
     pub show_name: Option<bool>,
+}
+
+#[derive(Default, Serialize, Deserialize, Debug)]
+pub struct MemoryConfig {
+    pub active: Option<bool>,
+}
+
+#[derive(Default, Serialize, Deserialize, Debug)]
+pub struct OsConfig {
+    pub active: Option<bool>,
+}
+
+#[derive(Default, Serialize, Deserialize, Debug)]
+pub struct ShellConfig {
+    pub active: Option<bool>,
+}
+
+#[derive(Default, Serialize, Deserialize, Debug)]
+pub struct UptimeConfig {
+    pub active: Option<bool>,
+}
+
+#[derive(Default, Serialize, Deserialize, Debug)]
+pub struct UserConfig {
+    pub active: Option<bool>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]

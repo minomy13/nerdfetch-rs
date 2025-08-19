@@ -8,7 +8,7 @@
   
   <br/>
 
-  <img alt="AUR Version" src="https://img.shields.io/aur/version/nerdfetch-rs?style=for-the-badge&link=https%3A%2F%2Faur.archlinux.org%2Fpackages%2Fnerdfetch-rs">
+  <img alt="AUR Version" src="https://img.shields.io/aur/version/nerdfetch-rs?style=for-the-badge&link=https%3A%2F%2Faur.archlinux.org%2Fpackages%2Fnerdfetch-rs&logo=archlinux">
 
   <br/>
 </p>
@@ -30,6 +30,42 @@ This project is a Rust-based reimagining with a similar aesthetic and minimalist
 
 You can find the config file at `$HOME/.config/nerdfetch-rs.toml`. As the suffix might suggest, it is in TOML format.
 
+### Modules
+
+Every module has its own table named like `[modules.module_name]`. Every module can be enabled or disabled
+with the `active` key, which is a boolean. Some default modules are enabled by
+default and must be disabled explicitely.
+
+- **Default:** `color_palette` `kernel` `memory` `os` `shell` `uptime` `user`
+- **Others:** `host`
+
+#### Module-Specifics
+
+##### Kernel
+
+| Key       | Value                                                 |
+| --------- | ----------------------------------------------------- |
+| show_name | Show name of kernel. Otherwise just version is shown. |
+
+##### Host
+
+📝 **Note:** Activating this module may have a minor performance impact on MacOS, as it spawns a child process.
+
+### Theme
+
+The following keys can be set in the `[theme]` table.
+
+| Key        | Value                                                                  |
+| ---------- | ---------------------------------------------------------------------- |
+| ascii_art  | (Multiline-) String of ASCII art displayed to the left of modules.     |
+| art_color  | Color of whole ASCII art.                                              |
+| icon_color | Color of module icons.                                                 |
+| info_color | Color of module text.                                                  |
+
+### Colors
+
+`white` `black` `red` `green` `yellow` `blue` `magenta` `cyan` `bright_red` `bright_green` `bright_yellow` `bright_blue` `bright_magenta` `bright_cyan`
+
 ## Installation
 
 This software should work for most Linux distros and macOS. You **need** to have a [Nerd Font](https://www.nerdfonts.com)
@@ -38,8 +74,8 @@ installed and enabled in your terminal.
 ### Package manager
 
 - **AUR.** `yay -S nerdfetch-rs`
-- **Homebrew.** Soon.
-- **NIX.** Soon.
+- **Homebrew.** Coming soon.
+- **NIX.** Coming soon.
 - **Cargo / build from source.** For installation with Cargo (especially if you're on a Debian or Red Hat based system)
   use `cargo install --git https://github.com/minomy13/nerdfetch-rs`. Of course, you have to have a Rust toolchain
   up and running.

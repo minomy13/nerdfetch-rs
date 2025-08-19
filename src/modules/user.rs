@@ -1,10 +1,9 @@
-use crate::config::schema::Config;
+use crate::config::{conf_unwrap_or, schema::Config};
 use crate::modules::module::Module;
 use color_print::cformat;
 use sysinfo::System;
 use users::{get_current_uid, get_user_by_uid};
 
-#[derive(Default)]
 pub struct User;
 
 impl Module for User {
@@ -25,5 +24,9 @@ impl Module for User {
 
     fn get_info(&self, _: &Config) -> String {
         unimplemented!()
+    }
+
+    fn is_active(&self, config: &Config) -> bool {
+        conf_unwrap_or!(config, true, modules / user / active)
     }
 }

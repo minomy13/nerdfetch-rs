@@ -1,9 +1,9 @@
+use crate::config::conf_unwrap_or;
 use crate::config::schema::Config;
 use crate::modules::module::Module;
 use chrono::Duration;
 use sysinfo::System;
 
-#[derive(Default)]
 pub struct Uptime;
 
 impl Module for Uptime {
@@ -35,5 +35,9 @@ impl Module for Uptime {
                 "".to_string()
             }
         )
+    }
+
+    fn is_active(&self, config: &Config) -> bool {
+        conf_unwrap_or!(config, true, modules / uptime / active)
     }
 }
