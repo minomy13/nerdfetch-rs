@@ -21,7 +21,7 @@ fn main() {
         match lines.get_mut(i) {
             Some(line) => line.push_str(&format!("  {}", modules.get(i).unwrap())),
             None => lines.push(format!(
-                "{}{}",
+                "    {}{}",
                 " ".repeat(config.theme.get_fmt_art_longest_ln()),
                 modules.get(i).unwrap()
             )),
