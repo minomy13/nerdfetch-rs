@@ -11,7 +11,7 @@ fn main() {
 
     for line in ascii_art.lines() {
         if let Some(color) = &config.theme.art_color {
-            lines.push(format!("\x1b[{}m  {line}", color.to_owned() as u32))
+            lines.push(format!("\x1b[{}m  {line}\x1b[0m", color.to_owned() as u32))
         } else {
             lines.push(format!("  {line}"))
         }

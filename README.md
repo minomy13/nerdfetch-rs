@@ -30,21 +30,37 @@ This project is a Rust-based reimagining with a similar aesthetic and minimalist
 
 You can find the config file at `$HOME/.config/nerdfetch-rs.toml`. As the suffix might suggest, it is in TOML format.
 
-#### [theme]
+### Modules
+
+Every module has its own table named like `[modules.module_name]`. Every module can be enabled or disabled
+with the `active` key, which is a boolean. Some default modules are enabled by
+default and must be disabled explicitely.
+
+- **Default:** `color_palette` `kernel` `memory` `os` `shell` `uptime` `user`
+- **Others:** `host`
+
+#### Module-Specifics
+
+##### Kernel
+
+| Key       | Value                                                 |
+| --------- | ----------------------------------------------------- |
+| show_name | Show name of kernel. Otherwise just version is shown. |
+
+##### Host
+
+📝 **Note:** Activating this module may have a minor performance impact on MacOS, as it spawns a child process.
+
+### Theme
+
+The following keys can be set in the `[theme]` table.
+
 | Key        | Value                                                                  |
 | ---------- | ---------------------------------------------------------------------- |
 | ascii_art  | (Multiline-) String of ASCII art displayed to the left of modules.     |
 | art_color  | Color of whole ASCII art.                                              |
 | icon_color | Color of module icons.                                                 |
 | info_color | Color of module text.                                                  |
-
-#### [modules]
-
-##### [modules.kernel]
-
-| Key       | Value                                                 |
-| --------- | ----------------------------------------------------- |
-| show_name | Show name of kernel. Otherwise just version is shown. |
 
 ### Colors
 

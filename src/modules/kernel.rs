@@ -3,7 +3,6 @@ use crate::config::schema::Config;
 use crate::modules::module::Module;
 use sysinfo::System;
 
-#[derive(Default)]
 pub struct Kernel;
 
 impl Module for Kernel {
@@ -19,5 +18,9 @@ impl Module for Kernel {
         } else {
             System::kernel_version().unwrap()
         }
+    }
+
+    fn is_active(&self, config: &Config) -> bool {
+        conf_unwrap_or!(config, true, modules / kernel / active)
     }
 }
