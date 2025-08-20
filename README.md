@@ -9,6 +9,7 @@
   <br/>
 
   <img alt="AUR Version" src="https://img.shields.io/aur/version/nerdfetch-rs?style=for-the-badge&link=https%3A%2F%2Faur.archlinux.org%2Fpackages%2Fnerdfetch-rs&logo=archlinux">
+  <img alt="Crates.io Version" src="https://img.shields.io/crates/v/nerdfetch-rs?style=for-the-badge&link=https%3A%2F%2Fcrates.io%2Fcrates%2Fnerdfetch-rs">
 
   <br/>
 </p>
