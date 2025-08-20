@@ -1,7 +1,12 @@
 [package]
 name = "nerdfetch-rs"
 version = "1.1.2"
+authors = ["minomy13 <mail@minomy13.com>"]
 edition = "2024"
+description = "A minimal, fast system fetch tool - rewritten in Rust for speed, clarity, and configurability."
+repository = "https://github.com/minomy13/nerdfetch-rs/"
+license = "MIT"
+keywords = ["bash", "zsh", "minimal", "command-line", "sysinfo"]
 
 [dependencies]
 toml = "0.8.22"

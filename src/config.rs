@@ -56,7 +56,7 @@ fn create_config_file() -> Result<Config, Error> {
 }
 
 fn open_config_dir() -> Result<PathBuf, Error> {
-    // deprecated because may have unexpected behavior on Windows, but remember that we hate windows
+    // deprecated because may have unexpected behavior on Windows; Windows not supported anyway
     #[allow(deprecated)]
     let config_dir = match env::home_dir() {
         Some(dir) => dir,
