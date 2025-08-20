@@ -1,4 +1,4 @@
-name: Submit to AUR
+name: Publish
 
 on:
   push:
@@ -6,8 +6,19 @@ on:
       - "v[0-9]*.[0-9]*.[0-9]*"
 
 jobs:
-  build:
+  check-cargo-version:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install toml-cli
+        run: cargo install toml-cli
+      - name: Check version
+        run: test "v$(toml get -r Cargo.toml package.version)" = "${{ github.ref_name }}"
+
+  aur:
+    runs-on: ubuntu-latest
+    needs: check-cargo-version
     steps:
       - name: Get version
         id: get_version
@@ -22,7 +33,7 @@ jobs:
           pkgver=${{ steps.get_version.outputs.tag_version }}
           pkgrel=1
           pkgdesc="A minimal, fast system fetch tool - rewritten in Rust for speed, clarity, and configurability."
-          arch=('x86_64' 'aarch64')
+          arch=('x86_64')
           url="https://github.com/minomy13/nerdfetch-rs"
           license=('MIT')
           makedepends=('cargo')
@@ -60,3 +71,15 @@ jobs:
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Update AUR package
           ssh_keyscan_types: rsa,ecdsa,ed25519
+
+  crates-io:
+    runs-on: ubuntu-latest
+    needs: check-cargo-version
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Publish
+        run: cargo publish
+        env:            
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+      
