@@ -49,7 +49,7 @@ default and must be disabled explicitely.
 
 ##### Host
 
-📝 **Note:** Activating this module may have a minor performance impact on MacOS, as it spawns a child process.
+📝 **Note:** Activating this module may have a minor performance impact on macOS, as it spawns a child process.
 
 ### Theme
 
@@ -74,8 +74,7 @@ installed and enabled in your terminal.
 ### Package manager
 
 - **AUR.** `yay -S nerdfetch-rs`
-- **Homebrew.** Coming soon.
+- **Homebrew.** We have to get a lot more popular to make this possible. Please use *crates.io* in the meantime.
 - **NIX.** Coming soon.
-- **Cargo / build from source.** For installation with Cargo (especially if you're on a Debian or Red Hat based system)
-  use `cargo install --git https://github.com/minomy13/nerdfetch-rs`. Of course, you have to have a Rust toolchain
-  up and running.
+- **crates.io.** `cargo install nerdfetch-rs`. Rust toolchain required. (Debian, Red Hat, macOS, etc.)
+- **Build from source.** Clone this repository and run `cargo build --release`. You'll find your binary in the `target/release` directory. Rust toolchain required.
