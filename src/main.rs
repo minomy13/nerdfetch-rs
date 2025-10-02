@@ -1,3 +1,5 @@
+use crate::config::{conf_unwrap_or, schema::Alignment};
+
 mod config;
 mod modules;
 
@@ -17,8 +19,19 @@ fn main() {
         }
     }
 
+    let modules_start = match conf_unwrap_or!(config, Alignment::Top, modules / alignment) {
+        Alignment::Top => 0,
+        Alignment::Center => {
+            if modules.len() < ascii_art.lines().count() {
+                (ascii_art.lines().count() - modules.len()) / 2
+            } else {
+                0
+            }
+        }
+    };
+
     for i in 0..modules.len() {
-        match lines.get_mut(i) {
+        match lines.get_mut(i + modules_start) {
             Some(line) => line.push_str(&format!("  {}", modules.get(i).unwrap())),
             None => lines.push(format!(
                 "    {}{}",

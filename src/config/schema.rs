@@ -8,6 +8,7 @@ pub struct Config {
 
 #[derive(Default, Serialize, Deserialize, Debug)]
 pub struct Modules {
+    pub alignment: Option<Alignment>,
     pub color_palette: Option<ColorPaletteConfig>,
     pub host: Option<HostConfig>,
     pub kernel: Option<KernelConfig>,
@@ -65,6 +66,13 @@ pub struct Theme {
     pub art_color: Option<Color>,
     pub icon_color: Color,
     pub info_color: Color,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, Copy)]
+#[serde(rename_all = "snake_case")]
+pub enum Alignment {
+    Top,
+    Center,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
