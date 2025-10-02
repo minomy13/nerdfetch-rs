@@ -40,6 +40,10 @@ default and must be disabled explicitely.
 - **Default:** `color_palette` `kernel` `memory` `os` `shell` `uptime` `user`
 - **Others:** `host`
 
+| Key       | Value                                                           |
+| --------- | --------------------------------------------------------------- |
+| alignment | Alignment of modules relative to art. Can be `top` or `center`. |
+
 #### Module-Specifics
 
 ##### Kernel
@@ -56,12 +60,12 @@ default and must be disabled explicitely.
 
 The following keys can be set in the `[theme]` table.
 
-| Key        | Value                                                                  |
-| ---------- | ---------------------------------------------------------------------- |
-| ascii_art  | (Multiline-) String of ASCII art displayed to the left of modules.     |
-| art_color  | Color of whole ASCII art.                                              |
-| icon_color | Color of module icons.                                                 |
-| info_color | Color of module text.                                                  |
+| Key        | Value                                                              |
+| ---------- | ------------------------------------------------------------------ |
+| ascii_art  | (Multiline-) String of ASCII art displayed to the left of modules. |
+| art_color  | Color of whole ASCII art.                                          |
+| icon_color | Color of module icons.                                             |
+| info_color | Color of module text.                                              |
 
 ### Colors
 
@@ -75,7 +79,7 @@ installed and enabled in your terminal.
 ### Package manager
 
 - **AUR.** `yay -S nerdfetch-rs`
-- **Homebrew.** We have to get a lot more popular to make this possible. Please use *crates.io* in the meantime.
+- **Homebrew.** We have to get a lot more popular to make this possible. Please use _crates.io_ in the meantime.
 - **NIX.** Coming soon.
 - **crates.io.** `cargo install nerdfetch-rs`. Rust toolchain required. (Debian, Red Hat, macOS, etc.)
 - **Build from source.** Clone this repository and run `cargo build --release`. You'll find your binary in the `target/release` directory. Rust toolchain required.
