@@ -15,7 +15,7 @@ impl Module for User {
             conf_unwrap_or!(config, Color::BrightBlue, modules / user / hostname_color) as u32;
 
         format!(
-            "\x1b[1;{username_color}m{}\x1b[{at_color}m@\x1b[{hostname_color}m{}",
+            "\x1b[1;{username_color}m{}\x1b[{at_color}m@\x1b[{hostname_color}m{}\x1b[0m",
             match get_user_by_uid(get_current_uid()) {
                 Some(user) => user.name().to_string_lossy().to_string(),
                 None => "n/a".to_string(),
