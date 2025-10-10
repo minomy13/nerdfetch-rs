@@ -46,6 +46,14 @@ default and must be disabled explicitely.
 
 #### Module-Specifics
 
+##### User
+
+| Key            | Value                                           |
+| -------------- | ----------------------------------------------- |
+| username_color | Color of the username.                          |
+| at_color       | Color of the '@' between username and hostname. |
+| hostname_color | Color of the hostname.                          |
+
 ##### Kernel
 
 | Key       | Value                                                 |
