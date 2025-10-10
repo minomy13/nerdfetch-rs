@@ -48,6 +48,8 @@ default and must be disabled explicitely.
 
 ##### User
 
+All colors appear bright because of bold text.
+
 | Key            | Value                                           |
 | -------------- | ----------------------------------------------- |
 | username_color | Color of the username.                          |
