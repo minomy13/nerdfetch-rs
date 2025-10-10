@@ -27,6 +27,12 @@
 **Acknowledgements:** Heavily inspired by [NerdFetch](https://github.com/ThatOneCalculator/nerdfetch) by ThatOneCalculator.
 This project is a Rust-based reimagining with a similar aesthetic and minimalistic goals.
 
+## Gallery
+<img height="132" alt="Screenshot 2025-10-10 at 12 42 02 PM" src="https://github.com/user-attachments/assets/a7a479e9-7c28-428d-8b6d-897d1f1aede7" />
+<img height="132" alt="marvin" src="https://github.com/user-attachments/assets/e61e49e1-9aa0-4034-aa73-84ae131dbf30" />
+
+<br>ASCII arts by [Hayley Jane Wakenshaw](https://asciiart.website/art/1652) and an [unknown artist](https://emojicombos.com/pokemon-ascii-art).
+
 ## Config
 
 You can find the config file at `$HOME/.config/nerdfetch-rs.toml`. As the suffix might suggest, it is in TOML format.
