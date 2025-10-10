@@ -8,6 +8,7 @@ pub struct Config {
 
 #[derive(Default, Serialize, Deserialize, Debug)]
 pub struct Modules {
+    pub alignment: Option<Alignment>,
     pub color_palette: Option<ColorPaletteConfig>,
     pub host: Option<HostConfig>,
     pub kernel: Option<KernelConfig>,
@@ -57,6 +58,9 @@ pub struct UptimeConfig {
 #[derive(Default, Serialize, Deserialize, Debug)]
 pub struct UserConfig {
     pub active: Option<bool>,
+    pub username_color: Option<Color>,
+    pub at_color: Option<Color>,
+    pub hostname_color: Option<Color>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -67,7 +71,14 @@ pub struct Theme {
     pub info_color: Color,
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, Copy)]
+#[serde(rename_all = "snake_case")]
+pub enum Alignment {
+    Top,
+    Center,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, Copy)]
 #[serde(rename_all = "snake_case")]
 pub enum Color {
     White = 37,
