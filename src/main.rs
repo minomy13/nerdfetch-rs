@@ -1,3 +1,5 @@
+use std::{env, io::stdin};
+
 use crate::config::{conf_unwrap_or, schema::Alignment};
 
 mod config;
@@ -6,7 +8,23 @@ mod modules;
 fn main() {
     let config = config::read();
 
-    let ascii_art = config.theme.get_formatted_ascii_art();
+    let args: Vec<String> = env::args().collect();
+
+    let ascii_art = if args.len() > 1 && args.contains(&"--stdin".to_string()) {
+        let mut buf = String::new();
+        loop {
+            let bytes = stdin()
+                .read_line(&mut buf)
+                .expect("Couldn't read from stdin");
+            if bytes == 0 {
+                break;
+            }
+        }
+        buf
+    } else {
+        config.theme.get_formatted_ascii_art()
+    };
+
     let modules = modules::get_modules(&config);
 
     let mut lines = vec![];
