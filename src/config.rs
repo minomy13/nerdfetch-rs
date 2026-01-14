@@ -1,4 +1,4 @@
-mod default;
+pub mod default;
 pub mod schema;
 
 use crate::config::schema::Config;
@@ -17,8 +17,8 @@ macro_rules! conf_unwrap_or {
     };
 
     ($conf:ident, $or:expr, $name:ident) => {
-        if let Some($name) = $conf.$name {
-            $name
+        if let Some($name) = &$conf.$name {
+            $name.to_owned()
         } else { $or }
     }
 }
