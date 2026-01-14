@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Default, Serialize, Deserialize, Debug)]
 pub struct Config {
-    pub theme: Theme,
+    pub theme: Option<Theme>,
     pub modules: Option<Modules>,
 }
 
@@ -65,10 +65,11 @@ pub struct UserConfig {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Theme {
-    pub ascii_art: String,
+    pub ascii_art: Option<String>,
     pub art_color: Option<Color>,
-    pub icon_color: Color,
-    pub info_color: Color,
+    pub icon_color: Option<Color>,
+    pub info_color: Option<Color>,
+    pub art_info_spacing: Option<usize>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, Copy)]
@@ -81,6 +82,7 @@ pub enum Alignment {
 #[derive(Serialize, Deserialize, Debug, Clone, Copy)]
 #[serde(rename_all = "snake_case")]
 pub enum Color {
+    Reset = 0,
     White = 37,
     Black = 30,
     Red = 31,
@@ -95,32 +97,4 @@ pub enum Color {
     BrightBlue = 94,
     BrightMagenta = 95,
     BrightCyan = 96,
-}
-
-impl Theme {
-    pub fn get_fmt_art_longest_ln(&self) -> usize {
-        let mut longest_line = 0;
-        for line in self.ascii_art.lines() {
-            let len = line.len();
-            if len > longest_line {
-                longest_line = len
-            }
-        }
-        longest_line
-    }
-
-    pub fn get_formatted_ascii_art(&self) -> String {
-        let mut result = String::new();
-
-        let longest_line = self.get_fmt_art_longest_ln();
-
-        for line in self.ascii_art.lines() {
-            result.push_str(&format!(
-                "{line}{}\n",
-                " ".repeat(longest_line - line.len())
-            ))
-        }
-
-        result
-    }
 }
