@@ -33,6 +33,10 @@ This project is a Rust-based reimagining with a similar aesthetic and minimalist
 
 <br>ASCII arts by [Hayley Jane Wakenshaw](https://asciiart.website/art/1652) and an [unknown artist](https://emojicombos.com/pokemon-ascii-art).
 
+## Command line options
+
+- `--stdin` - read ASCII art from stdin, e.g. `cat art.txt | nerdfetch-rs --stdin`
+
 ## Config
 
 You can find the config file at `$HOME/.config/nerdfetch-rs.toml`. As the suffix might suggest, it is in TOML format.

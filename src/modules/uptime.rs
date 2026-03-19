@@ -20,7 +20,10 @@ impl Module for Uptime {
         format!(
             "{}{}{}",
             if days > 0 {
-                format!("{days} days{}", if hours > 0 { ", " } else { "" })
+                format!(
+                    "{days} days{}",
+                    if hours > 0 || minutes > 0 { ", " } else { "" }
+                )
             } else {
                 "".to_string()
             },
