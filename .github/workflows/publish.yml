@@ -62,7 +62,7 @@ jobs:
           EOF
 
       - name: Upload to AUR
-        uses: KSXGitHub/github-actions-deploy-aur@v4.1.1
+        uses: KSXGitHub/github-actions-deploy-aur@v4.2.0
         with:
           pkgname: nerdfetch-rs
           pkgbuild: ./PKGBUILD
